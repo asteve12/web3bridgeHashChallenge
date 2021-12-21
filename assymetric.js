@@ -1,3 +1,7 @@
+/*
+MY SOLUTION OF ASSYMETRIC CRYPTOGRAPHY
+*/
+
 let privateKey = Math.random();
 let publicKey = Math.random();
 
@@ -19,8 +23,11 @@ function decrypt(encodedText, givenPrivateKey) {
 
 let b = decrypt(a, privateKey);
 
-console.log('this is b', b);
+console.log(b);
 
 /*
 WHEN DENCRYPTED
-the output is :this is b web3bridge thanks for these opportunity*/
+the output is : web3bridge thanks for these opportunity
+which is the original input
+
+*/
