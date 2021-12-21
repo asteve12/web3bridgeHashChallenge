@@ -1,43 +1,26 @@
-import crypto from 'crypto';
+let privateKey = Math.random();
+let publicKey = Math.random();
 
-const data = 'thanks web3bridge for impacting life with theese programme';
+let data = 'web3bridge thanks for these opportunity';
 
-// these code helps to generate the public and private that will help for encryption and decryption
-const { publicKey, privateKey } = crypto.generateKeyPairSync('rsa', {
-  modulusLength: 2048,
-});
+function encrypt(message, publicKeyGiven) {
+  if (publicKey == publicKeyGiven) return btoa(message);
+}
 
-//this code below eable the ecryptionof the data with the help of the public key
-
-const hashResult = crypto.publicEncrypt(
-  {
-    key: publicKey,
-    padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
-    oaepHash: 'sha256',
-  },
-  Buffer.from(data)
-);
-
-console.log(hashResult.toString('base64'));
-
-/* our output will be */
+let a = encrypt(data, publicKey);
+console.log(a);
 /*
-c+lH1xn+El988JzICC71HlVC+ppM8HeG2NXTcDxA+xtajb1ox2UF+2wqz1P3YC2gFxYUKCn4dGjmBB8T7/FtQNfsP+cmwQJua+uj2bLiTwX2OfAeGSsl0
-42DmFWVEwLFx5e/cr6aqq9lfbWWY4Hv+38r1OJBQFK/BNBs1xiz4RsLKQRXorBbg8wFP6wL63af+e/2iqU2U/NqMF9yOvwyrOgjc3gSUK+C90nqvMD
-q7pK1BWJw0ELBOiEA24Vgw/ybWKCUNTxJdK9T1d2TLl2B0KraX+Kyxr+c4lCTL49AjuX3aam4BD9nNzXL+fQkqoKYBYd3MhgCaLlEqkVuRsAYyA==
-*/
+WHEN ENCRYPTED
+the output is :d2ViM2JyaWRnZSB0aGFua3MgZm9yIHRoZXNlIG9wcG9ydHVuaXR5*/
 
-const decryptHash = crypto.privateDecrypt(
-  {
-    key: privateKey,
-    padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
-    oaepHash: 'sha256',
-  },
-  hashResult
-);
-console.log(decryptHash.toString());
+function decrypt(encodedText, givenPrivateKey) {
+  if (privateKey == givenPrivateKey) return atob(encodedText);
+}
 
-//the output is our previously input data
+let b = decrypt(a, privateKey);
+
+console.log('this is b', b);
+
 /*
-thanks web3bridge for impacting life with theese programme
-*/
+WHEN DENCRYPTED
+the output is :this is b web3bridge thanks for these opportunity*/
